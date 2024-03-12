@@ -1,3 +1,46 @@
-[gd_scene format=3 uid="uid://c5gn5qdwaoue"]
+[gd_scene load_steps=5 format=3 uid="uid://c5gn5qdwaoue"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_25bgo"]
+[ext_resource type="PackedScene" uid="uid://dfk0rmr77kmu4" path="res://Player.tscn" id="1_dbwbi"]
+[ext_resource type="PackedScene" uid="uid://bherncuw1oht3" path="res://oo.tscn" id="2_c3v00"]
+
+[sub_resource type="Curve2D" id="Curve2D_ds52e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 1152, 8, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 8)
+}
+point_count = 5
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_25bgo")
+oo_scene = ExtResource("2_c3v00")
+
+[node name="O" parent="." instance=ExtResource("1_dbwbi")]
+
+[node name="ooTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(568, 360)
+
+[node name="ooPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ds52e")
+
+[node name="ooSpawnLoc" type="PathFollow2D" parent="ooPath"]
+position = Vector2(0, 8)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 509.0
+offset_top = 24.0
+offset_right = 645.0
+offset_bottom = 161.0
+theme_override_font_sizes/font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="hit" from="O" to="." method="_on_o_hit"]
+[connection signal="timeout" from="ooTimer" to="." method="_on_oo_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

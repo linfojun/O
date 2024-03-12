@@ -28,6 +28,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_187b7"]
 
 [node name="O" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_i5fuc")
 metadata/_edit_group_ = true
 
@@ -37,4 +38,7 @@ animation = &"o"
 frame_progress = 0.101763
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_187b7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

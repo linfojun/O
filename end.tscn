@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://di27vao2sh8ij"]
+
+[ext_resource type="Script" path="res://end.gd" id="1_uf6cc"]
+
+[node name="End" type="Node2D"]
+script = ExtResource("1_uf6cc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 475.0
+offset_top = 264.0
+offset_right = 700.0
+offset_bottom = 344.0
+theme_override_font_sizes/font_size = 20
+text = "恭喜你，完成了！"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 430.0
+offset_top = 320.0
+offset_right = 680.0
+offset_bottom = 470.0
+theme_override_font_sizes/font_size = 30
+text = "结束"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
