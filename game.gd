@@ -56,7 +56,8 @@ func _on_o_hit(type):
 			score = 0
 			real_score += 5
 			if real_score == 100:
-				await get_tree().create_timer(0.1).timeout
+				$O.hide()
+				await get_tree().create_timer(0.3).timeout
 				get_tree().change_scene_to_file("res://end.tscn")
 				# 游戏结束
 	else: 
